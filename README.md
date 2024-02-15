@@ -22,3 +22,9 @@ python main.py file.csv [-t | -l]
 # show help
 python main.py -h
 ```
+
+## References
+
+- [`pd.read_csv()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+- [`pd.to_json()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html)
+- [`pd.transpose()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html)

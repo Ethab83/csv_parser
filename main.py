@@ -3,21 +3,21 @@ import json as js
 import pandas as pd
 
 def main():
+    # parse arguments
     args = parse_args()
 
-    parser = Parser(args.filename)
+    # Create a new CSVParser()
+    parser = CSVParser()
 
-    if args.top:
-        # TODO: parse with top as keys
-        pass
-    elif args.left:
-        # TODO: parse with left as keys
-        pass
-    else:
-        # TODO: parse with top as keys
-        pass
-
+    # get json
+    json = parser.parser_factory(args)
+    parsed = js.loads(json) 
     
+
+    # write json to output.txt
+    with open("output.txt", "w") as out_file:
+        out_file.write(js.dumps(parsed, indent=4) )
+
 def parse_args():
     parser = ap.ArgumentParser(
                     prog='csv_parser',
@@ -31,17 +31,26 @@ def parse_args():
 
     return parser.parse_args()
 
-class Parser:
-    def __init__(self, filename):
-        self.unparsed_data = pd.read_csv(filename) # csv as a 2d array
-        self.parsed_data = {}
 
-    def to_json(self):
-        # TODO
-        pass
+class CSVParser:
+    def parser_factory(self, args):
+        self._unparsed_data = pd.read_csv(args.filename) # csv as a 2d array
+        self._parsed_data = {}
+        if args.left:
+            self._parse_left()
+        else:
+            self._parse_top()
+        
+        return self._to_json()
 
-# TODO: maybe separate classes for top parser and left parser
-#       (sorta overkill but probably required for factory method)
+    def _parse_left(self):
+        self._parsed_data = self._unparsed_data.transpose().copy()
+
+    def _parse_top(self):
+        self._parsed_data = self._unparsed_data.copy()
+
+    def _to_json(self):
+        return self._parsed_data.to_json()
 
 if __name__ == '__main__':
     main()
