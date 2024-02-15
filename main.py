@@ -1,21 +1,25 @@
 import csv_parser
 import argparse as ap
 import json as js
+import pandas as pd
 
 def main():
     # parse arguments
     args = parse_args()
 
-    # Create a new CSVParser()
-    if args.top:
-        parser = csv_parser.CSVParserFactory('top')
-    if args.left:
-        parser = csv_parser.CSVParserFactory('left')
-    else:
-        parser = csv_parser.CSVParserFactory()
+    unparsed_data = pd.read_csv(args.filename) # csv as a 2d array
+    parsed_data = {}
 
-    # get json (https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html)
-    json = parser.parse(args.filename)
+    # get json
+    if args.top:
+        json = unparsed_data.copy().to_json()
+    if args.left:
+        # transpose
+        json = unparsed_data.transpose().copy().to_json()
+
+    else:
+        json = unparsed_data.copy().to_json()
+
     parsed_json = js.loads(json) 
 
     # write json to output.txt

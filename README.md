@@ -1,4 +1,4 @@
-# csv_parser
+# csv_parser (Factory method removed)
 
 csv parser to json
 
