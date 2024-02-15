@@ -13,14 +13,14 @@ pip install -r requirements.txt
 
 ## Usage
 
-```shell
-python main.py file.csv [-t | -l]
+```text
+usage: python main.py file.csv [-t | -l]
 
-    -t: keys are located on top row (default)
-    -l: keys are located on left column
+options:
+    -h, --help  show this help message and exit
+    -t, --top   keys are located on top row (default)
+    -l, --left  keys are located on left column
 
-# show help
-python main.py -h
 ```
 
 ## References
