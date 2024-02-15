@@ -28,3 +28,5 @@ options:
 - [`pd.read_csv()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
 - [`pd.to_json()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_json.html)
 - [`pd.transpose()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html)
+- [`CSVParserFactory`](https://www.geeksforgeeks.org/factory-method-python-design-patterns/)
+- 

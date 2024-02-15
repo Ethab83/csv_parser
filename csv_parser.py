@@ -14,6 +14,7 @@ class _CSVParser():
         if __class__ == "CSVParser":
             raise NotImplementedError
         
+        # read csv (https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
         self._unparsed_data = pd.read_csv(filename) # csv as a 2d array
         self._parsed_data = {}
 
@@ -27,6 +28,8 @@ class _CSVParser():
 class _LeftParser(_CSVParser):
     def parse(self, filename):
         super().parse(filename)
+
+        # Transpose (https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.transpose.html)
         self._parsed_data = self._unparsed_data.transpose().copy()
         
         return self._to_json()
